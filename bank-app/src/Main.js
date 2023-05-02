@@ -143,7 +143,7 @@ function Main()
           <AccountForm addCustomer={addAccount}/>
         </div>
       </div>
-      <div className='row'>
+      <div className='row text-center'>
           <div className='card-container d-flex justify-content-center flex-wrap'>
             {readaccounts.length ? (
               readaccounts.map((account) => (
