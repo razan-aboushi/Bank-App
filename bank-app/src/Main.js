@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const AccountForm = ({ addCustomer }) => 
 {
-  const [name, setName] = useState('');
+  const [customerName, setName] = useState('');
   const [accountNumber, setAccountNumber] = useState('');
   const [accountType, setAccountType] = useState('');
 
@@ -12,7 +12,7 @@ const AccountForm = ({ addCustomer }) =>
     element.preventDefault();
 
     addCustomer({
-       name,
+      customerName,
       accountNumber,
       accountType
     });
@@ -25,7 +25,7 @@ const AccountForm = ({ addCustomer }) =>
   return (
     <div className='formBody'>
       <div className='card p-3 w-100'>
-        <h3 className='r mb-3'>Hello, {name}</h3>
+        <h3 className='r mb-3'>Hello, {customerName}</h3>
 
         <form onSubmit={handleSubmi} >
           <div className='form-group'>
@@ -34,7 +34,7 @@ const AccountForm = ({ addCustomer }) =>
               type='text'
               placeholder='Enter your name'
               id='Name'
-              value={name}
+              value={customerName}
               onChange={(event) => setName(event.target.value)}
               className='form-control' required
             />
