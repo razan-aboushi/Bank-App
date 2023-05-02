@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
 
-const AccountForm = ({ addCustomer }) => {
+const AccountForm = ({ addCustomer }) => 
+{
   const [name, setName] = useState('');
   const [accountNumber, setAccountNumber] = useState('');
   const [accountType, setAccountType] = useState('');
 
-  function handleSubmi(element) {
+  
+  function handleSubmi(element)
+   {
     element.preventDefault();
 
     addCustomer({
-      customerName: name,
+       name,
       accountNumber,
       accountType
     });
+
     setName('');
     setAccountNumber('');
     setAccountType('');
@@ -21,9 +25,9 @@ const AccountForm = ({ addCustomer }) => {
   return (
     <div className='formBody'>
       <div className='card p-3 w-100'>
-        <h3 className='text-center mb-3'>Hello, {name}</h3>
+        <h3 className='r mb-3'>Hello, {name}</h3>
 
-        <form onSubmit={handleSubmi} className='text-center'>
+        <form onSubmit={handleSubmi} >
           <div className='form-group'>
             <label htmlFor='Name'>Name of customer</label>
             <input
@@ -32,7 +36,7 @@ const AccountForm = ({ addCustomer }) => {
               id='Name'
               value={name}
               onChange={(event) => setName(event.target.value)}
-              className='form-control'
+              className='form-control' required
             />
           </div>
 
@@ -45,7 +49,7 @@ const AccountForm = ({ addCustomer }) => {
               value={accountNumber}
               onChange={(event) => setAccountNumber(event.target.value)}
               className='form-control'
-            />
+           required />
           </div>
 
           <div className='form-group'>
@@ -57,7 +61,7 @@ const AccountForm = ({ addCustomer }) => {
               value={accountType}
               onChange={(event) => setAccountType(event.target.value)}
               className='form-control'
-            />
+          required  />
           </div>
 
           <div className='form-group'>
@@ -74,7 +78,9 @@ const AccountForm = ({ addCustomer }) => {
 
 
 
-function Main() {
+
+function Main() 
+{
   const [readaccounts, setReadAccounts] = useState(
     JSON.parse(localStorage.getItem('readaccounts')) || [
       {
@@ -113,29 +119,30 @@ function Main() {
     localStorage.setItem('read accounts', JSON.stringify(readaccounts));
   }, [readaccounts]);
 
+
   function addAccount(newAccount) {
     const updatedAccounts = [...readaccounts, { id: numberOfAccounts + 1, ...newAccount }];
     setReadAccounts(updatedAccounts);
     setNumberOfAccounts(updatedAccounts.length);
   }
 
-  function deleteAccount(id) {
+  function deleteAccount(id)
+   {
     const updatedAccounts = readaccounts.filter((account) => account.id !== id);
     setReadAccounts(updatedAccounts);
     setNumberOfAccounts(updatedAccounts.length);
   }
 
 
-
+// render card
   return (
-    <div className='container mt-5 text-center'>
+    <div className='container mt-5'>
       <h2 className='text-center mb-4'>Customers Bank Accounts</h2>
       <div className='row d-flex justify-content-center'>
         <div className='col-md-6'>
-          <AccountForm addCustomer={addAccount} />
+          <AccountForm addCustomer={addAccount}/>
         </div>
       </div>
- 
       <div className='row'>
           <div className='card-container d-flex justify-content-center flex-wrap'>
             {readaccounts.length ? (
@@ -163,7 +170,5 @@ function Main() {
   );
 
 };
-
-
 
 export default Main;
