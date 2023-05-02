@@ -125,48 +125,38 @@ const Main = () => {
   };
   
   return (
-  <div className='container mt-5'>
-  <h1 className='text-center mb-4'>Bank Accounts</h1>
-  <div className='row'>
-  <div className='col-md-4'>
-  <AccountForm addCustomer={addAccount} />
-  </div>
-  <div className='col-md-8'>
-  {readaccounts.length ? (
-  <table className='table table-striped'>
-  <thead>
-  <tr>
-  <th>Customer Name</th>
-  <th>Account Number</th>
-  <th>Account Type</th>
-  <th>Action</th>
-  </tr>
-  </thead>
-  <tbody>
-  {readaccounts.map((account) => (
-  <tr key={account.id}>
-  <td>{account.customerName}</td>
-  <td>{account.accountNumber}</td>
-  <td>{account.accountType}</td>
-  <td>
-  <button
-  className='btn btn-danger'
-  onClick={() => deleteAccount(account.id)}
-  >
-  Delete
-  </button>
-  </td>
-  </tr>
-  ))}
-  </tbody>
-  </table>
-  ) : (
-  <p>No accounts found</p>
-  )}
-  </div>
-  </div>
-  </div>
+    <div className='container mt-5 text-center'>
+      <h2 className='text-center mb-4'>Customers Bank Accounts</h2>
+      <div className='row'>
+        <div className='col-md-4'>
+          <AccountForm addCustomer={addAccount} />
+        </div>
+        <div className='col-md-8'>
+          <div className='card-container'>
+            {readaccounts.length ? (
+              readaccounts.map((account) => (
+                <div className='card' key={account.id}>
+                  <div className='card-header'>{account.customerName}</div>
+                  <div className='card-body'>
+                    <p className='card-text'>Account Number: {account.accountNumber}</p>
+                    <p className='card-text'>Account Type: {account.accountType}</p>
+                    <button
+                      className='btn btn-danger'
+                      onClick={() => deleteAccount(account.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>No accounts found</p>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
   );
-  };
+};
   
   export default Main;
