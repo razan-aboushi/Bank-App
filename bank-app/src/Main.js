@@ -5,77 +5,76 @@ const AccountForm = ({ addCustomer }) => {
   const [accountNumber, setAccountNumber] = useState('');
   const [accountType, setAccountType] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  function handleSubmi(element) {
+    element.preventDefault();
+
     addCustomer({
       customerName: name,
       accountNumber,
-      accountType,
+      accountType
     });
     setName('');
     setAccountNumber('');
     setAccountType('');
-  };
+  }
 
   return (
-    <div>
-    <h3 className='mb-3'>Hello , {name}</h3>
-    <form onSubmit={handleSubmit} className='bg-light rounded p-3 shadow'>
-      <div className='form-group'>
-        <label htmlFor='Name'>Name of customer</label>
-        <input
-          type='text'
-          placeholder='Enter your name'
-          id='Name'
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          className='form-control'
-        />
-      </div>
+    <div className='formBody'>
+      <div className='card p-3 w-100'>
+        <h3 className='text-center mb-3'>Hello, {name}</h3>
 
-      <div className='form-group'>
-        <label htmlFor='AccNumber'>Account number</label>
-        <input
-          type='text'
-          placeholder='Account number'
-          id='AccNumber'
-          value={accountNumber}
-          onChange={(event) => setAccountNumber(event.target.value)}
-          className='form-control'
-        />
-      </div>
-
-      <div className='form-group'>
-        <label htmlFor='Account'>Account type</label>
-        <input
-          type='text'
-          placeholder='Enter your Account type'
-          id='Account'
-          value={accountType}
-          onChange={(event) => setAccountType(event.target.value)}
-          className='form-control'
-        />
-      </div>
-
-      <div className='form-group text-center mt-4'>
-        <button className='btn' type='submit'>
-          <strong>Add Customer</strong>
-          <div id='container-stars'>
-            <div id='stars'></div>
+        <form onSubmit={handleSubmi} className='text-center'>
+          <div className='form-group'>
+            <label htmlFor='Name'>Name of customer</label>
+            <input
+              type='text'
+              placeholder='Enter your name'
+              id='Name'
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              className='form-control'
+            />
           </div>
 
-          <div id='glow'>
-            <div className='circle'></div>
-            <div className='circle'></div>
+          <div className='form-group'>
+            <label htmlFor='AccNumber'>Account number</label>
+            <input
+              type='text'
+              placeholder='Account number'
+              id='AccNumber'
+              value={accountNumber}
+              onChange={(event) => setAccountNumber(event.target.value)}
+              className='form-control'
+            />
           </div>
-        </button>
+
+          <div className='form-group'>
+            <label htmlFor='Account'>Account type</label>
+            <input
+              type='text'
+              placeholder='Enter your Account type'
+              id='Account'
+              value={accountType}
+              onChange={(event) => setAccountType(event.target.value)}
+              className='form-control'
+            />
+          </div>
+
+          <div className='form-group'>
+            <button className='btn btn-primary mx-auto d-block mt-4' type='submit'>
+              <strong>Add Customer</strong>
+            </button>
+          </div>
+        </form>
       </div>
-    </form>
     </div>
   );
 };
 
-const Main = () => {
+
+
+
+function Main() {
   const [readaccounts, setReadAccounts] = useState(
     JSON.parse(localStorage.getItem('readaccounts')) || [
       {
@@ -104,44 +103,50 @@ const Main = () => {
       },
     ]
   );
-  const [numberOfAccounts, setNumberOfAccounts] = useState(
-    readaccounts.length
-  );
+
+
+  const [numberOfAccounts, setNumberOfAccounts] = useState(readaccounts.length);
+
+
 
   useEffect(() => {
     localStorage.setItem('read accounts', JSON.stringify(readaccounts));
   }, [readaccounts]);
-  
-  const addAccount = (newAccount) => {
-  const updatedAccounts = [...readaccounts, { id: numberOfAccounts + 1, ...newAccount }];
-  setReadAccounts(updatedAccounts);
-  setNumberOfAccounts(updatedAccounts.length);
-  };
-  
-  const deleteAccount = (id) => {
-  const updatedAccounts = readaccounts.filter((account) => account.id !== id);
-  setReadAccounts(updatedAccounts);
-  setNumberOfAccounts(updatedAccounts.length);
-  };
-  
+
+  function addAccount(newAccount) {
+    const updatedAccounts = [...readaccounts, { id: numberOfAccounts + 1, ...newAccount }];
+    setReadAccounts(updatedAccounts);
+    setNumberOfAccounts(updatedAccounts.length);
+  }
+
+  function deleteAccount(id) {
+    const updatedAccounts = readaccounts.filter((account) => account.id !== id);
+    setReadAccounts(updatedAccounts);
+    setNumberOfAccounts(updatedAccounts.length);
+  }
+
+
+
   return (
     <div className='container mt-5 text-center'>
       <h2 className='text-center mb-4'>Customers Bank Accounts</h2>
-      <div className='row'>
-        <div className='col-md-4'>
+      <div className='row d-flex justify-content-center'>
+        <div className='col-md-6'>
           <AccountForm addCustomer={addAccount} />
         </div>
-        <div className='col-md-8'>
-          <div className='card-container'>
+      </div>
+ 
+      <div className='row'>
+          <div className='card-container d-flex justify-content-center flex-wrap'>
             {readaccounts.length ? (
               readaccounts.map((account) => (
-                <div className='card' key={account.id}>
+                <div className='card mb-4 mx-2' key={account.id}>
                   <div className='card-header'>{account.customerName}</div>
                   <div className='card-body'>
                     <p className='card-text'>Account Number: {account.accountNumber}</p>
                     <p className='card-text'>Account Type: {account.accountType}</p>
                     <button
-                      className='btn btn-danger'
+                      className='btn btn-danger d-flex mx-auto mt-3'
                       onClick={() => deleteAccount(account.id)}
                     >
                       Delete
@@ -153,10 +158,12 @@ const Main = () => {
               <p>No accounts found</p>
             )}
           </div>
-        </div>
       </div>
     </div>
   );
+
 };
-  
-  export default Main;
+
+
+
+export default Main;

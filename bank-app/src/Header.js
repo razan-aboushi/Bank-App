@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default function Header() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-black">
-    <a className="navbar-brand" href="#">
+    <a className="navbar-brand ms-2" href="#">
       Bank of Razan
     </a>
     <button

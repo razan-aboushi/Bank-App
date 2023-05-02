@@ -7,7 +7,6 @@ const Home = () => {
     return (
         <div>
             <Main />
-            <Footer />
         </div>
     )
     } 

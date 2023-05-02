@@ -1,14 +1,15 @@
 import React from 'react'
 
-function Footer() {
+function Footer() 
+{
   return (
     <div>
-      <footer className="text-center text-white fixed-bottom" style={{ backgroundColor: '#21081a' }}>
-        <div className="container p-4"></div>
-        <div className="text-center p-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-          © 2023 Copyright: Razan Bank
-        </div>
-      </footer>
+<footer class="page-footer font-small blue bg-black">
+
+  <div class="footer-copyright text-center py-3 text-white">© 2023 Copyright: Razan Al-qadoumi
+  </div>
+
+</footer>
     </div>
   );
 }
