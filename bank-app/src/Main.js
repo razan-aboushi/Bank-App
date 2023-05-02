@@ -78,11 +78,9 @@ const AccountForm = ({ addCustomer }) =>
 
 
 
-
 function Main() 
 {
-  const [readaccounts, setReadAccounts] = useState(
-    JSON.parse(localStorage.getItem('readaccounts')) || [
+  const [readAccounts, setReadAccounts] = useState( [
       {
         id: 1,
         customerName: 'Israa Othman',
@@ -111,30 +109,26 @@ function Main()
   );
 
 
-  const [numberOfAccounts, setNumberOfAccounts] = useState(readaccounts.length);
+  const [numberOfAccounts, setNumberOfAccounts] = useState(readAccounts.length);
 
 
 
-  useEffect(() => {
-    localStorage.setItem('read accounts', JSON.stringify(readaccounts));
-  }, [readaccounts]);
-
-
-  function addAccount(newAccount) {
-    const updatedAccounts = [...readaccounts, { id: numberOfAccounts + 1, ...newAccount }];
+  function addAccount(newAccount) 
+  {
+    const updatedAccounts = [...readAccounts, { id: numberOfAccounts + 1, ...newAccount }];
     setReadAccounts(updatedAccounts);
     setNumberOfAccounts(updatedAccounts.length);
   }
 
   function deleteAccount(id)
    {
-    const updatedAccounts = readaccounts.filter((account) => account.id !== id);
+    const updatedAccounts = readAccounts.filter((account) => account.id !== id);
     setReadAccounts(updatedAccounts);
     setNumberOfAccounts(updatedAccounts.length);
   }
 
 
-// render card
+// render cards and forms
   return (
     <div className='container mt-5'>
       <h2 className='text-center mb-4'>Customers Bank Accounts</h2>
@@ -145,8 +139,7 @@ function Main()
       </div>
       <div className='row text-center'>
           <div className='card-container d-flex justify-content-center flex-wrap'>
-            {readaccounts.length ? (
-              readaccounts.map((account) => (
+            {readAccounts.length ? (readAccounts.map((account) => (
                 <div className='card mb-4 mx-2' key={account.id}>
                   <div className='card-header'>{account.customerName}</div>
                   <div className='card-body'>
