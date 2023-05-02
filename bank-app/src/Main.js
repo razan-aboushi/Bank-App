@@ -161,7 +161,7 @@ const Main = () => {
   </tbody>
   </table>
   ) : (
-  <p>No accounts found.</p>
+  <p>No accounts found</p>
   )}
   </div>
   </div>

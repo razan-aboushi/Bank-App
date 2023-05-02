@@ -19,7 +19,7 @@ code {
   font-weight: bold;
   margin-right: 2rem;
   text-decoration: none;
-  color:purple;
+  color:purple !important;
   animation: animateNavbarBrand 1s ease-in-out;
 }
 
